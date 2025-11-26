@@ -1,0 +1,35 @@
+footer {
+   background-color: #800032;
+   height: 160px;
+   width: 100%;
+   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+   overflow: hidden;
+
+    .footer-content {
+         max-width: 1920px;
+         margin: 0 auto;
+         height: 100%;
+         display: flex;
+         align-items: center;
+         justify-content: space-around;
+         position: relative;
+
+         img {
+              height: 10rem;
+              filter: brightness(0) invert(1);
+         }
+    
+         a {
+              text-decoration: none;
+              font-size: 26px;
+              color: white;
+              font-weight: bold;
+              padding: 0 15px;
+              transition: opacity 0.2s ease;
+    
+              &:hover {
+                opacity: 0.8;
+              }
+         }
+    }
+}

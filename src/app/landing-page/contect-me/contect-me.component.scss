@@ -30,7 +30,6 @@ $breakpoint-lg: 1024px;
   max-width: 1280px;
   margin: 0 auto;
   padding: 3rem 1rem;
-  background: linear-gradient(135deg, rgba(128, 0, 50, 0.03) 0%, rgba(128, 0, 50, 0.08) 100%);
   min-height: 100vh;
 
   @media (min-width: $breakpoint-md) {
@@ -47,6 +46,10 @@ $breakpoint-lg: 1024px;
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
   }
+  
+  @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg) {
+    grid-template-columns: 1fr 1fr;
+  }
 
   // Mobile: Formular oben, Upload unten
   .card:first-child {
@@ -62,6 +65,45 @@ $breakpoint-lg: 1024px;
     
     @media (min-width: $breakpoint-lg) {
       order: 2;
+    }
+  }
+}
+
+.contact-text {
+  max-width: 1280px;
+  margin: 0 auto 3rem auto;
+  padding: 3rem;
+  background: $primary-color;
+  color: $white;
+  border-width: 4px;
+  border-style: solid;
+  border-color: $white;
+  box-shadow: 8px 8px 0px 0px $primary-dark;
+  
+  @media (max-width: $breakpoint-lg) {
+    margin: 0 1rem 2rem 1rem;
+    padding: 2rem;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: $white;
+    margin: 0 0 1rem 0;
+    
+    @media (max-width: $breakpoint-md) {
+      font-size: 2rem;
+    }
+  }
+  
+  p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: $white;
+    margin: 0;
+    
+    @media (max-width: $breakpoint-md) {
+      font-size: 1rem;
     }
   }
 }

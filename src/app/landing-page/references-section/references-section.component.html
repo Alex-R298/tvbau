@@ -1,6 +1,19 @@
 <section>
-    <div>
-        <h1>Willkommen bei TVBau</h1>
-        <p>References-section</p>
+    <div class="references-container ">
+        <div class="carousel">
+            <div class="item" *ngFor="let item of this.items; let i = index" [class.active]="currentSlideIndex == i">
+                <img [src]="item.image" alt="Carousel Image" class="scroll-animate scroll-animate-delay">
+                <div class="carousel-text">
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.description }}</p>
+                </div>
+            </div>
+            <button class="scroll-animate scroll-animate-delay" (click)="prevSlide()">Previous</button>
+            <button class="scroll-animate scroll-animate-delay" (click)="nextSlide()">Next</button>
+        </div>
+        <div class="references-text scroll-animate">
+            <h1>Unsere Referenzen</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque fuga debitis quasi excepturi, laborum voluptates eligendi aliquid libero. Eaque temporibus vero earum eveniet sint sapiente explicabo natus eius culpa a!</p>
+        </div>
     </div>
 </section>
