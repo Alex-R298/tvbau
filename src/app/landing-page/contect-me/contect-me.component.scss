@@ -1,0 +1,446 @@
+// Variables
+$primary-color: #800032;
+$primary-hover: #660028;
+$primary-dark: #4d001e;
+$danger-color: #ef4444;
+$danger-hover: #dc2626;
+
+$white: #ffffff;
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$gray-900: #111827;
+
+$border-radius: 0.75rem;
+$border-radius-lg: 1rem;
+$transition-speed: 0.3s;
+
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+
+// Container & Grid Layout
+.contact-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  background: linear-gradient(135deg, rgba(128, 0, 50, 0.03) 0%, rgba(128, 0, 50, 0.08) 100%);
+  min-height: 100vh;
+
+  @media (min-width: $breakpoint-md) {
+    padding: 4rem 2rem;
+  }
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  // Mobile: Formular oben, Upload unten
+  .card:first-child {
+    order: 2;
+    
+    @media (min-width: $breakpoint-lg) {
+      order: 1;
+    }
+  }
+
+  .card:last-child {
+    order: 1;
+    
+    @media (min-width: $breakpoint-lg) {
+      order: 2;
+    }
+  }
+}
+
+// Card Styling
+.card {
+  background: $white;
+  border: 4px solid $gray-200;
+  padding: 2rem;
+  transition: all $transition-speed ease;
+
+  &:hover {
+    border-color: $primary-color;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    padding: 2.5rem;
+  }
+}
+
+.card-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: $gray-900;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-color, $primary-hover);
+    border-radius: 2px;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 2rem;
+  }
+}
+
+// Upload Area
+.upload-wrapper {
+  margin-bottom: 2rem;
+}
+
+.upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 14rem;
+  border: 3px dashed $gray-300;
+  cursor: pointer;
+  background: $white;
+  transition: all $transition-speed ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(29, 78, 216, 0.05) 100%);
+    opacity: 0;
+    transition: opacity $transition-speed ease;
+  }
+
+  &:hover {
+    border-color: $primary-color;
+    transform: scale(1.02);
+    
+    &::before {
+      opacity: 1;
+    }
+
+    .upload-icon {
+      transform: translateY(-5px);
+      color: $primary-color;
+    }
+  }
+
+  &.dragging {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(29, 78, 216, 0.1) 100%);
+    border-color: $primary-color;
+    border-width: 3px;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    
+    .upload-icon,
+    .upload-text-main,
+    .upload-text-sub {
+      color: $primary-color;
+    }
+
+    .upload-icon {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.upload-icon {
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1rem;
+  color: $gray-400;
+  transition: all $transition-speed ease;
+}
+
+.upload-text-main {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: $gray-700;
+  transition: color $transition-speed ease;
+  font-weight: 500;
+}
+
+.upload-text-bold {
+  font-weight: 700;
+  color: $primary-color;
+}
+
+.upload-text-sub {
+  font-size: 0.875rem;
+  color: $gray-500;
+  transition: color $transition-speed ease;
+}
+
+.file-input {
+  display: none;
+}
+
+// Image Grid
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+
+  @media (min-width: $breakpoint-sm) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.image-item {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid $gray-300;
+  transition: all $transition-speed ease;
+
+  &:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 
+                0 4px 6px -2px rgba(0, 0, 0, 0.1);
+    transform: scale(1.03);
+
+    .delete-button {
+      opacity: 1;
+    }
+
+    .image-filename {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
+}
+
+.image-preview {
+  width: 100%;
+  height: 9rem;
+  object-fit: cover;
+  display: block;
+  transition: transform $transition-speed ease;
+
+  .image-item:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.delete-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: $danger-color;
+  color: $white;
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: all $transition-speed ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+
+  &:hover {
+    background-color: $danger-hover;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.delete-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: block;
+}
+
+.image-filename {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: $white;
+  font-size: 0.75rem;
+  padding: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color $transition-speed ease;
+  font-weight: 500;
+}
+
+// Info Text
+.info-text {
+  font-size: 1rem;
+  color: $gray-500;
+  margin-top: 1.5rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.info-text-count {
+  font-size: 1rem;
+  color: $primary-color;
+  margin-top: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+// Form Styling
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: $breakpoint-sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: $gray-700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.875rem 1.125rem;
+  border: 2px solid $gray-200;
+  font-size: 1rem;
+  color: $gray-900;
+  outline: none;
+  transition: all $transition-speed ease;
+  background-color: $white;
+  font-family: inherit;
+
+  &::placeholder {
+    color: $gray-400;
+  }
+
+  &:hover {
+    border-color: $gray-300;
+  }
+
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    background-color: $white;
+  }
+}
+
+.form-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%234b5563'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.25rem;
+  padding-right: 3rem;
+
+  option {
+    padding: 0.75rem;
+    background-color: $white;
+    color: $gray-900;
+  }
+
+  &:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%232563eb'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  }
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+// Submit Button
+.submit-button {
+  width: 100%;
+  background: transparent;
+  color: $white;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  padding: 1rem 2rem;
+  border: 4px solid $white;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 8px 8px 0px 0px $primary-color;
+  position: relative;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  background: $primary-color;
+
+  &:hover {
+    color: $primary-color;
+    border-color: $primary-color;
+    background: $white;
+    box-shadow: 0px 0px 0px 0px $primary-color;
+    transform: translate(8px, 8px);
+  }
+
+  &:active {
+    box-shadow: 0px 0px 0px 0px $primary-color;
+    transform: translate(8px, 8px);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 1.125rem;
+    padding: 1.125rem 2rem;
+  }
+}

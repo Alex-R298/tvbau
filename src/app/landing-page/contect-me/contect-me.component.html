@@ -1,0 +1,153 @@
+<div class="contact-container scroll-animate">
+  <div class="contact-grid">
+    
+    <!-- Image Upload Section - Links -->
+    <div class="card">
+      <h2 class="card-title">Bilder hochladen</h2>
+      
+      <!-- Upload Area -->
+      <div class="upload-wrapper">
+        <label 
+          for="file-upload" 
+          class="upload-area"
+          [class.dragging]="isDragging"
+          (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)"
+          (drop)="onDrop($event)">
+          <div class="upload-content">
+            <svg class="upload-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+            </svg>
+            <p class="upload-text-main"><span class="upload-text-bold">Klicken zum Hochladen</span> oder Drag & Drop</p>
+            <p class="upload-text-sub">PNG, JPG, GIF (MAX. 10MB)</p>
+          </div>
+          <input 
+            id="file-upload" 
+            type="file" 
+            class="file-input" 
+            multiple 
+            accept="image/*"
+            (change)="onFileSelect($event)">
+        </label>
+      </div>
+
+      <!-- Image Preview Grid -->
+      <div class="image-grid" *ngIf="uploadedImages.length > 0">
+        <div *ngFor="let image of uploadedImages" class="image-item">
+          <img 
+            [src]="image.preview" 
+            [alt]="image.file.name"
+            class="image-preview">
+          <button
+            type="button"
+            (click)="removeImage(image.id)"
+            class="delete-button">
+            <svg class="delete-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+          <div class="image-filename">
+            {{ image.file.name }}
+          </div>
+        </div>
+      </div>
+
+      <p class="info-text" *ngIf="uploadedImages.length === 0">
+        Noch keine Bilder hochgeladen
+      </p>
+      <p class="info-text-count" *ngIf="uploadedImages.length > 0">
+        {{ uploadedImages.length }} {{ uploadedImages.length === 1 ? 'Bild' : 'Bilder' }} hochgeladen
+      </p>
+    </div>
+
+    <!-- Contact Form Section - Rechts -->
+    <div class="card">
+      <h2 class="card-title">Kontaktformular</h2>
+      
+      <form (ngSubmit)="onSubmit()" class="contact-form">
+        
+        <!-- Vorname & Name -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="vorname" class="form-label">Vorname</label>
+            <input
+              type="text"
+              id="vorname"
+              name="vorname"
+              [(ngModel)]="formData.vorname"
+              class="form-input"
+              placeholder="Max">
+          </div>
+          
+          <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              [(ngModel)]="formData.name"
+              class="form-input"
+              placeholder="Mustermann">
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email" class="form-label">E-Mail</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="formData.email"
+            class="form-input"
+            placeholder="max.mustermann@email.com">
+        </div>
+
+        <!-- Telefon -->
+        <div class="form-group">
+          <label for="telefon" class="form-label">Telefonnummer</label>
+          <input
+            type="tel"
+            id="telefon"
+            name="telefon"
+            [(ngModel)]="formData.telefon"
+            class="form-input"
+            placeholder="+49 123 456789">
+        </div>
+
+        <!-- Leistung Dropdown -->
+        <div class="form-group">
+          <label for="leistung" class="form-label">Gewünschte Leistung</label>
+          <select
+            id="leistung"
+            name="leistung"
+            [(ngModel)]="formData.leistung"
+            class="form-select">
+            <option value="" disabled selected>Bitte wählen Sie eine Leistung</option>
+            <option *ngFor="let leistung of leistungen" [value]="leistung">
+              {{ leistung }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Nachricht -->
+        <div class="form-group">
+          <label for="nachricht" class="form-label">Nachricht</label>
+          <textarea
+            id="nachricht"
+            name="nachricht"
+            [(ngModel)]="formData.nachricht"
+            rows="5"
+            class="form-textarea"
+            placeholder="Ihre Nachricht an uns..."></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-button">
+          Anfrage senden
+        </button>
+      </form>
+    </div>
+
+  </div>
+</div>

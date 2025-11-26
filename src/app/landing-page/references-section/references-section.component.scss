@@ -1,0 +1,21 @@
+section {
+    background-color: #800032;
+    color: white;
+    padding: 4rem 1rem;
+    text-align: center;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    p {
+        font-size: 1.25rem;
+    }
+}
