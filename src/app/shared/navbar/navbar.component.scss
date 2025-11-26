@@ -17,9 +17,14 @@ nav {
          align-items: center;
          justify-content: space-around;
          position: relative;
+         padding: 0 1rem;
 
          img {
               height: 22rem;
+              
+              @media (max-width: 968px) {
+                height: 12rem;
+              }
          }
     
          a {
@@ -30,9 +35,38 @@ nav {
               padding: 0 15px;
               opacity: 1;
               transition: opacity 0.2s ease;
+              
+              @media (max-width: 968px) {
+                display: none;
+              }
+              
+              @media (max-width: 1200px) {
+                font-size: 20px;
+                padding: 0 10px;
+              }
     
               &:hover {
                 color: #800032;
+              }
+         }
+         
+         // Mobile Menu Button
+         .menu-toggle {
+              display: none;
+              flex-direction: column;
+              gap: 6px;
+              cursor: pointer;
+              padding: 10px;
+              
+              @media (max-width: 968px) {
+                display: flex;
+              }
+              
+              span {
+                width: 30px;
+                height: 3px;
+                background-color: #333;
+                transition: all 0.3s ease;
               }
          }
     }
@@ -42,10 +76,16 @@ nav {
 nav.scrolled {
   height: 118px;
   width: 100%;
-  clip-path: inset(0 calc(100% - (50% + 0px + 76px - 38.5rem + 20px)) 0 calc(50% - 52rem)); 
-  // Berechnung: Start + left position + Bildbreite + padding
   transition: height 0.4s ease, clip-path 0.4s ease;
-  border-radius: 0 0 20px 0;
+  
+  @media (min-width: 969px) {
+    clip-path: inset(0 calc(100% - (50% + 0px + 76px - 38.5rem + 20px)) 0 calc(50% - 52rem));
+  }
+  
+  @media (max-width: 968px) {
+    height: 80px;
+    clip-path: none;
+  }
   
   .navbar {
     max-width: 1920px;
@@ -55,12 +95,22 @@ nav.scrolled {
 
     img {
       height: 22rem;
-      position: absolute;
-      left: 110px;
+      
+      @media (min-width: 969px) {
+        position: absolute;
+        left: 110px;
+      }
+      
+      @media (max-width: 968px) {
+        height: 8rem;
+        position: static;
+      }
     }
 
     a {
-      display: none;
+      @media (min-width: 969px) {
+        display: none;
+      }
     }
   }
 }

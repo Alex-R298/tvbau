@@ -4,6 +4,10 @@ footer {
    width: 100%;
    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
    overflow: hidden;
+   
+   @media (max-width: 968px) {
+      height: 120px;
+   }
 
     .footer-content {
          max-width: 1920px;
@@ -13,10 +17,15 @@ footer {
          align-items: center;
          justify-content: space-around;
          position: relative;
+         padding: 0 1rem;
 
          img {
               height: 10rem;
               filter: brightness(0) invert(1);
+              
+              @media (max-width: 968px) {
+                height: 6rem;
+              }
          }
     
          a {
@@ -26,6 +35,15 @@ footer {
               font-weight: bold;
               padding: 0 15px;
               transition: opacity 0.2s ease;
+              
+              @media (max-width: 968px) {
+                display: none;
+              }
+              
+              @media (max-width: 1200px) {
+                font-size: 20px;
+                padding: 0 10px;
+              }
     
               &:hover {
                 opacity: 0.8;

@@ -79,6 +79,8 @@ $breakpoint-lg: 1024px;
   border-style: solid;
   border-color: $white;
   box-shadow: 8px 8px 0px 0px $primary-dark;
+  position: relative;
+  z-index: 1;
   
   @media (max-width: $breakpoint-lg) {
     margin: 0 1rem 2rem 1rem;

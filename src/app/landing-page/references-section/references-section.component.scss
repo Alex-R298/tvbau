@@ -6,6 +6,11 @@ section {
     justify-content: center;
     align-items: center;
     
+    > * {
+        position: relative;
+        z-index: 1;
+    }
+    
     .references-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
