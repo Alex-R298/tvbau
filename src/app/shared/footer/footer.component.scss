@@ -30,23 +30,46 @@ footer {
     
          a {
               text-decoration: none;
-              font-size: 26px;
+              font-size: 1.25rem;
               color: white;
-              font-weight: bold;
-              padding: 0 15px;
-              transition: opacity 0.2s ease;
+              font-weight: 700;
+              padding: 0.75rem 1.5rem;
+              position: relative;
+              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              letter-spacing: 0.02em;
+              border: 3px solid transparent;
               
               @media (max-width: 968px) {
                 display: none;
               }
               
               @media (max-width: 1200px) {
-                font-size: 20px;
-                padding: 0 10px;
+                font-size: 1.125rem;
+                padding: 0.6rem 1.2rem;
+              }
+              
+              &::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 3px;
+                background: white;
+                transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
               }
     
               &:hover {
-                opacity: 0.8;
+                border-color: white;
+                transform: translateY(-2px);
+                
+                &::before {
+                  width: 100%;
+                }
+              }
+              
+              &:active {
+                transform: translateY(0);
               }
          }
     }
