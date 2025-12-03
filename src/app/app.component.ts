@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -14,7 +14,14 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 export class AppComponent implements OnInit {
   title = 'tvbau';
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   ngOnInit() {
+    // Nur im Browser ausführen, nicht beim SSR
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     // Global Scroll Observer für alle Elemente mit scroll-animate Klasse
     const observer = new IntersectionObserver(
       (entries) => {
