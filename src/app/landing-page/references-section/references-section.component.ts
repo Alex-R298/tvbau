@@ -28,10 +28,33 @@ export class ReferencesSectionComponent {
     },
   ];
   currentSlideIndex: number = 1;
+  selectedImageIndex: number | null = null;
 
   constructor() {}
 
   ngOnInit() {}
+
+  openModal(index: number) {
+    this.selectedImageIndex = index;
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeModal() {
+    this.selectedImageIndex = null;
+    document.body.style.overflow = 'auto';
+  }
+
+  nextImage() {
+    if (this.selectedImageIndex !== null) {
+      this.selectedImageIndex = (this.selectedImageIndex + 1) % this.items.length;
+    }
+  }
+
+  prevImage() {
+    if (this.selectedImageIndex !== null) {
+      this.selectedImageIndex = (this.selectedImageIndex - 1 + this.items.length) % this.items.length;
+    }
+  }
 
   nextSlide() {
     this.currentSlideIndex = (this.currentSlideIndex + 1) % this.items.length;

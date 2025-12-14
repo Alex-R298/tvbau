@@ -1,70 +1,107 @@
+$primary-color: #800032;
+$primary-hover: #a00040;
+
 nav {
-   background-color: white;
-   height: 160px;
+   background: rgba(255, 255, 255, 0.98);
+   backdrop-filter: blur(10px);
+   height: 140px;
    width: 100%;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
    position: fixed;
    top: 0;
    left: 0;
    z-index: 1000;
-   transition: width 0.4s ease, height 0.4s ease, clip-path 0.4s ease;
+   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+   border-bottom: 1px solid rgba(128, 0, 50, 0.1);
 
     .navbar {
-         max-width: 1920px;
+         max-width: 1400px;
          margin: 0 auto;
          height: 100%;
          display: flex;
          align-items: center;
-         justify-content: space-around;
+         justify-content: space-between;
          position: relative;
-         padding: 0 1rem;
+         padding: 0 3rem;
+         
+         @media (max-width: 968px) {
+           padding: 0 1.5rem;
+         }
 
          img {
-              height: 22rem;
+              height: 18rem;
+              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
               
               @media (max-width: 968px) {
-                height: 12rem;
+                height: 10rem;
               }
+         }
+         
+         .logo-container {
+           display: flex;
+           align-items: center;
+           justify-content: center;
+         }
+         
+         .nav-links {
+           display: flex;
+           gap: 0.5rem;
+           align-items: center;
+           
+           @media (max-width: 968px) {
+             display: none;
+           }
          }
     
          a {
               text-decoration: none;
-              font-size: 1.25rem;
-              color: #1f2937;
+              font-size: 1.05rem;
+              color: #1a1a1a;
               font-weight: 700;
-              padding: 0.75rem 1.5rem;
+              padding: 0.85rem 1.75rem;
               position: relative;
               transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-              letter-spacing: 0.02em;
-              border: 3px solid transparent;
-              
-              @media (max-width: 968px) {
-                display: none;
-              }
-              
-              @media (max-width: 1200px) {
-                font-size: 1.125rem;
-                padding: 0.6rem 1.2rem;
-              }
+              letter-spacing: 0.5px;
+              text-transform: uppercase;
+              border-radius: 8px;
+              overflow: hidden;
               
               &::before {
                 content: '';
                 position: absolute;
                 bottom: 0;
-                left: 0;
+                left: 50%;
+                transform: translateX(-50%);
                 width: 0;
                 height: 3px;
-                background: #800032;
+                background: $primary-color;
                 transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                border-radius: 2px;
+              }
+              
+              &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(128, 0, 50, 0.05);
+                opacity: 0;
+                transition: opacity 0.3s ease;
               }
     
               &:hover {
-                color: #800032;
-                border-color: #800032;
+                color: $primary-color;
                 transform: translateY(-2px);
                 
                 &::before {
-                  width: 100%;
+                  width: 80%;
+                }
+                
+                &::after {
+                  opacity: 1;
                 }
               }
               
@@ -73,67 +110,153 @@ nav {
               }
          }
          
+         .contact-button {
+           text-decoration: none;
+           font-size: 0.95rem;
+           color: white;
+           font-weight: 700;
+           padding: 0.75rem 1.75rem;
+           background: linear-gradient(135deg, $primary-color 0%, $primary-hover 100%);
+           border-radius: 8px;
+           position: relative;
+           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+           letter-spacing: 0.5px;
+           text-transform: uppercase;
+           box-shadow: 0 4px 15px rgba(128, 0, 50, 0.3);
+           overflow: hidden;
+           border: none;
+           cursor: pointer;
+           
+           &::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: -100%;
+             width: 100%;
+             height: 100%;
+             background: rgba(255, 255, 255, 0.15);
+             transition: left 0.4s ease;
+             z-index: 1;
+           }
+           
+           &:hover {
+             transform: translateY(-3px);
+             box-shadow: 0 8px 25px rgba(128, 0, 50, 0.4);
+             background: linear-gradient(135deg, $primary-hover 0%, #c00050 100%);
+             
+             &::before {
+               left: 100%;
+             }
+           }
+           
+           &:active {
+             transform: translateY(-1px);
+           }
+           
+           @media (max-width: 968px) {
+             display: none;
+           }
+         }
+         
          // Mobile Menu Button
          .menu-toggle {
               display: none;
               flex-direction: column;
               gap: 6px;
               cursor: pointer;
-              padding: 10px;
+              padding: 12px;
+              border-radius: 8px;
+              transition: all 0.3s ease;
               
               @media (max-width: 968px) {
                 display: flex;
               }
               
+              &:hover {
+                background: rgba(128, 0, 50, 0.1);
+              }
+              
               span {
-                width: 30px;
+                width: 28px;
                 height: 3px;
-                background-color: #333;
+                background: $primary-color;
+                border-radius: 2px;
                 transition: all 0.3s ease;
               }
          }
     }
 }
 
-// Wenn gescrollt über 200px
+// Wenn gescrollt über 100px
 nav.scrolled {
-  height: 118px;
-  width: 100%;
-  transition: height 0.4s ease, clip-path 0.4s ease;
-  
-  @media (min-width: 969px) {
-    clip-path: inset(0 calc(100% - (50% + 0px + 76px - 38.5rem + 20px)) 0 calc(50% - 52rem));
-  }
+  height: 90px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
   
   @media (max-width: 968px) {
-    height: 80px;
-    clip-path: none;
+    height: 75px;
   }
   
   .navbar {
-    max-width: 1920px;
-    margin: 0 auto;
-    padding: 0;
-    justify-content: space-around;
-
     img {
-      height: 22rem;
-      
-      @media (min-width: 969px) {
-        position: absolute;
-        left: 110px;
-      }
+      height: 12rem;
+      transform: scale(0.95);
       
       @media (max-width: 968px) {
         height: 8rem;
-        position: static;
       }
     }
-
+    
     a {
-      @media (min-width: 969px) {
-        display: none;
-      }
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
     }
+  }
+}
+
+// Wenn hidden (beim Runterscrollen) - nur Links verschwinden, Logo und Kontakt bleiben sichtbar
+nav.hidden {
+  background: transparent;
+  box-shadow: none;
+  border-bottom: none;
+  backdrop-filter: none;
+  
+  .navbar {
+    .logo-container {
+      width: 200px;
+      height: 90px;
+      background: white;
+      flex-shrink: 0;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    img {
+      border: none;
+      box-shadow: none;
+      animation: none;
+    }
+    
+    .nav-links,
+    .menu-toggle {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    // Kontakt Button bleibt sichtbar
+    .contact-button {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+@keyframes highlightPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(128, 0, 50, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(128, 0, 50, 0.8);
   }
 }

@@ -1,20 +1,98 @@
 <section class="hero">
+    <!-- Background video -->
     <video autoplay loop muted playsinline class="hero-video">
         <source src="../../../assets/img/tvbau.mp4" type="video/mp4">
     </video>
     
-    <div class="hero-overlay"></div>
-    
+    <!-- Overlay layers -->
+    <div class="video-overlay"></div>
+    <div class="hero-accent"></div>
+
     <div class="hero-container">
-        <div class="hero-content scroll-animate">
-        <h1>Einfach gut gebaut.</h1>
-        <p>Wir machen alles professionell und zuverlässig!
-Maurerarbeiten, Betonbau, Sanierung, Abriss, Innenausbau oder komplette Neubauten: In Schwäbisch Gmünd und Umgebung realisieren wir Ihr Projekt termingerecht, in Top-Qualität und zum fairen Preis. Ihr zuverlässiger Partner für jedes Bauvorhaben!</p>
-        
-        <div class="hero-buttons">
-            <a href="#services">LEISTUNGEN</a>
-            <a href="#contact">KONTAKT</a>
+        <div class="hero-grid">
+            <!-- Left side: Headline -->
+            <div class="hero-left">
+                <div class="hero-headline-wrapper">
+                    <h1 class="hero-headline">
+                        <span class="headline-word" style="--delay: 0">Professionelle</span>
+                        <span class="headline-word" style="--delay: 0.1s">Bauarbeiten</span>
+                        <span class="headline-word accent" style="--delay: 0.2s">auf höchstem Niveau</span>
+                    </h1>
+                </div>
+                
+                <p class="hero-subtitle">
+                    Maurerarbeiten, Betonbau & Sanierungen in Schwäbisch Gmünd
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="hero-buttons">
+                    <button class="btn-primary">
+                        <span>Jetzt anfragen</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 10H13M13 10L10 7M13 10L10 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <a href="#services" class="btn-secondary">
+                        Unsere Leistungen
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right side: Features/Stats -->
+            <div class="hero-right">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 2L8 10V24C8 38 24 46 24 46C24 46 40 38 40 24V10L24 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M17 24L22 29L31 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Garantie</h3>
+                        <p>100% Qualitätsgarantie auf alle Arbeiten</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 4C12.9 4 4 12.9 4 24C4 35.1 12.9 44 24 44C35.1 44 44 35.1 44 24C44 12.9 35.1 4 24 4Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M24 8V24L34 32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Zuverlässig</h3>
+                        <p>Pünktliche Abwicklung und Termintreue</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 16H40V40H8V16Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 16V12C12 9.8 13.8 8 16 8H32C34.2 8 36 9.8 36 12V16" stroke="currentColor" stroke-width="2"/>
+                                <path d="M20 24V32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M28 24V32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Erfahrung</h3>
+                        <p>Jahrelange Expertise in Bauarbeiten</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 4C17.37 4 12 9.37 12 16C12 20.89 14.87 25.12 19 27.24V32C19 34.21 20.79 36 23 36H25C27.21 36 29 34.21 29 32V27.24C33.13 25.12 36 20.89 36 16C36 9.37 30.63 4 24 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M18 36H30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M20 40H28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>Moderne Techniken und Materialien</p>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
         </div>
     </div>
 </section>

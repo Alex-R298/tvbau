@@ -1,19 +1,62 @@
 <section>
-    <div class="references-container ">
-        <div class="carousel">
-            <div class="item" *ngFor="let item of this.items; let i = index" [class.active]="currentSlideIndex == i">
-                <img [src]="item.image" alt="Carousel Image" class="scroll-animate scroll-animate-delay">
-                <div class="carousel-text">
-                    <h3>{{ item.title }}</h3>
-                    <p>{{ item.description }}</p>
+    <div class="concrete-background">
+        <div class="geometric-pattern"></div>
+        <div class="red-stripes"></div>
+    </div>
+    
+    <div class="references-container">
+        <!-- Left side: Headline & Description -->
+        <div class="references-left">
+            <div class="references-headline-wrapper">
+                <h1 class="references-headline">
+                    <span class="headline-word" style="--delay: 0">Unsere</span>
+                    <span class="headline-word accent" style="--delay: 0.1s">Referenzen</span>
+                </h1>
+            </div>
+            
+            <p class="references-subtitle">
+                Von Einfamilienhäusern bis zu komplexen Gewerbeprojekten – unsere Arbeit spricht für sich. Qualität, Präzision und Leidenschaft in jedem einzelnen Projekt.
+            </p>
+
+            <div class="references-stats">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Projekte</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">Jahre Erfahrung</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Zufriedene Kunden</span>
                 </div>
             </div>
-            <button class="scroll-animate scroll-animate-delay" (click)="prevSlide()">Previous</button>
-            <button class="scroll-animate scroll-animate-delay" (click)="nextSlide()">Next</button>
         </div>
-        <div class="references-text scroll-animate">
-            <h1>Unsere Referenzen</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque fuga debitis quasi excepturi, laborum voluptates eligendi aliquid libero. Eaque temporibus vero earum eveniet sint sapiente explicabo natus eius culpa a!</p>
+
+        <!-- Right side: Image Grid -->
+        <div class="references-right">
+            <div class="image-grid">
+                <div class="grid-item" *ngFor="let item of this.items; let i = index" (click)="openModal(i)">
+                    <img [src]="item.image" [alt]="item.title" class="scroll-animate scroll-animate-delay">
+                    <div class="grid-overlay">
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.description }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <!-- Modal for enlarged image -->
+    <div class="modal" *ngIf="selectedImageIndex !== null" (click)="closeModal()">
+        <button class="modal-nav-btn modal-nav-prev" (click)="prevImage(); $event.stopPropagation()">‹</button>
+        
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <button class="modal-close" (click)="closeModal()">✕</button>
+            <img [src]="this.items[selectedImageIndex]?.image" [alt]="this.items[selectedImageIndex]?.title">
+        </div>
+        
+        <button class="modal-nav-btn modal-nav-next" (click)="nextImage(); $event.stopPropagation()">›</button>
     </div>
 </section>
