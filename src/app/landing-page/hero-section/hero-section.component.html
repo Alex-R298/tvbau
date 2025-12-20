@@ -1,127 +1,57 @@
-<section class="hero-luxury">
+<section class="hero">
     
     <!-- Video Background -->
-    <div class="video-wrapper">
+    <div class="video-container">
         <video autoplay loop muted playsinline class="hero-video">
             <source src="../../../assets/img/tvbau.mp4" type="video/mp4">
         </video>
-        <div class="video-gradient"></div>
+        <div class="video-overlay"></div>
     </div>
 
-    <!-- Elegant Grid Layout -->
-    <div class="hero-grid-luxury">
+    <!-- Content -->
+    <div class="hero-content">
         
-        <!-- Left: Main Content -->
-        <div class="content-column">
+        <div class="hero-inner">
             
-            <!-- Elegant Badge -->
-            <div class="luxury-badge">
-                <span class="badge-line"></span>
-                <span class="badge-text">Meisterbetrieb seit 1999</span>
-                <span class="badge-line"></span>
+            <!-- Badge -->
+            <div class="badge">
+                <span class="badge-dot"></span>
+                <span>Meisterbetrieb seit 1999</span>
             </div>
 
-            <!-- Refined Headline -->
-            <h1 class="headline-luxury">
-                <span class="headline-top">Exzellenz in</span>
-                <span class="headline-main">Handwerkskunst</span>
+            <!-- Massive Headline -->
+            <h1 class="hero-title">
+                Handwerk<br>
+                <span class="title-highlight">trifft Präzision</span>
             </h1>
 
-            <!-- Elegant Description -->
-            <p class="description-luxury">
-                Maurerarbeiten, Betonbau und Sanierungen auf höchstem Niveau. 
-                Präzision trifft Innovation in Schwäbisch Gmünd.
-            </p>
-
-            <!-- Premium Stats -->
-            <div class="stats-elegant">
-                <div class="stat-elegant">
-                    <div class="stat-value">25</div>
-                    <div class="stat-unit">Jahre Expertise</div>
-                </div>
-                <div class="stat-divider-elegant"></div>
-                <div class="stat-elegant">
-                    <div class="stat-value">500+</div>
-                    <div class="stat-unit">Projekte realisiert</div>
-                </div>
-                <div class="stat-divider-elegant"></div>
-                <div class="stat-elegant">
-                    <div class="stat-value">100%</div>
-                    <div class="stat-unit">Kundenzufriedenheit</div>
-                </div>
-            </div>
-
-            <!-- Refined CTA -->
-            <div class="cta-elegant">
-                <button class="btn-luxury-primary">
-                    <span>Beratungstermin vereinbaren</span>
-                    <div class="btn-arrow">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                </button>
-                <button class="btn-luxury-secondary">
-                    <span>Portfolio ansehen</span>
+            <!-- CTA -->
+            <div class="hero-actions">
+                <button class="btn-primary">
+                    Projekt starten
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
                 </button>
             </div>
 
-        </div>
-
-        <!-- Right: Floating Cards -->
-        <div class="cards-column">
-            
-            <!-- Service Card 1 -->
-            <div class="luxury-card">
-                <div class="card-icon">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                        <rect x="4" y="12" width="32" height="24" stroke="currentColor" stroke-width="1.5"/>
-                        <path d="M8 12V8C8 6.3 9.3 5 11 5H29C30.7 5 32 6.3 32 8V12" stroke="currentColor" stroke-width="1.5"/>
-                    </svg>
-                </div>
-                <h3>Rohbau</h3>
-                <p>Fundamente und Mauerwerk mit höchster Präzision</p>
-            </div>
-
-            <!-- Service Card 2 -->
-            <div class="luxury-card">
-                <div class="card-icon">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                        <path d="M4 20L20 4L36 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M8 20V36H32V20" stroke="currentColor" stroke-width="1.5"/>
-                    </svg>
-                </div>
-                <h3>Sanierung</h3>
-                <p>Modernisierung und Umbau nach neuesten Standards</p>
-            </div>
-
-            <!-- Service Card 3 -->
-            <div class="luxury-card">
-                <div class="card-icon">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                        <path d="M20 2L4 10V20C4 32 20 38 20 38C20 38 36 32 36 20V10L20 2Z" stroke="currentColor" stroke-width="1.5"/>
-                        <path d="M14 20L18 24L26 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                </div>
-                <h3>Qualitätsgarantie</h3>
-                <p>Meisterliche Ausführung mit langjähriger Gewährleistung</p>
+            <!-- Compact Info -->
+            <div class="hero-info">
+                <span>25+ Jahre</span>
+                <span class="divider">•</span>
+                <span>500+ Projekte</span>
+                <span class="divider">•</span>
+                <span>Schwäbisch Gmünd</span>
             </div>
 
         </div>
 
     </div>
 
-    <!-- Elegant Scroll Indicator -->
-    <div class="scroll-elegant">
-        <div class="scroll-text">Entdecken</div>
-        <div class="scroll-icon">
-            <svg width="20" height="30" viewBox="0 0 20 30" fill="none">
-                <rect x="1" y="1" width="18" height="28" rx="9" stroke="currentColor" stroke-width="1.5"/>
-                <circle cx="10" cy="8" r="2" fill="currentColor">
-                    <animate attributeName="cy" values="8;20;8" dur="2s" repeatCount="indefinite"/>
-                </circle>
-            </svg>
-        </div>
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
     </div>
 
 </section>

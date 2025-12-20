@@ -1,25 +1,25 @@
-// ============= LUXURY PALETTE =============
-$red-elegant: #800032;
-$red-light: #9a0038;
-$gold: #d4af37;
-$white: #ffffff;
-$off-white: #f8f8f8;
-$text-elegant: #e8e8e8;
-$text-muted: #b8b8b8;
+// ============= COLORS =============
+$primary-red: #800032;
+$primary-red-hover: #b91c1c;
+$dark: #0a0a0a;
+$text-primary: #ffffff;
+$text-secondary: #a3a3a3;
+$border-subtle: rgba(255, 255, 255, 0.1);
 
-// ============= HERO BASE =============
-.hero-luxury {
+// ============= HERO =============
+.hero {
     position: relative;
     min-height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
-    background: #0a0a0a;
+    background: $dark;
 }
 
-// ============= VIDEO - REFINED =============
-.video-wrapper {
+// ============= VIDEO =============
+.video-container {
     position: fixed;
     inset: 0;
     z-index: 0;
@@ -29,188 +29,122 @@ $text-muted: #b8b8b8;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.3) contrast(1.2) saturate(0.8);
+    opacity: 0.35;
 }
 
-.video-gradient {
+.video-overlay {
     position: absolute;
     inset: 0;
-    background: 
-        radial-gradient(ellipse at 20% 50%, transparent 0%, rgba(10,10,10,0.4) 50%),
-        radial-gradient(ellipse at 80% 50%, transparent 0%, rgba(10,10,10,0.4) 50%),
-        linear-gradient(to bottom, rgba(10,10,10,0.7), rgba(10,10,10,0.3), rgba(10,10,10,0.9));
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 10, 0.75),
+        rgba(10, 10, 10, 0.5),
+        rgba(10, 10, 10, 0.85)
+    );
 }
 
-// ============= ELEGANT GRID =============
-.hero-grid-luxury {
+// ============= CONTENT =============
+.hero-content {
     position: relative;
     z-index: 10;
-    max-width: 1600px;
     width: 100%;
-    margin: 0 auto;
-    padding: 0 clamp(40px, 6vw, 100px);
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: clamp(60px, 8vw, 120px);
-    align-items: center;
+    max-width: 1600px;
+    padding: 0 clamp(24px, 6vw, 100px);
 }
 
-// ============= LEFT CONTENT =============
-.content-column {
+.hero-inner {
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
-    gap: clamp(30px, 4vh, 50px);
-    animation: luxuryFadeIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    gap: clamp(40px, 6vh, 80px);
 }
 
-@keyframes luxuryFadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-// ============= LUXURY BADGE =============
-.luxury-badge {
+// ============= BADGE =============
+.badge {
     display: inline-flex;
     align-items: center;
-    gap: 20px;
-    color: $text-muted;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 3px;
+    gap: 12px;
+    color: $text-secondary;
+    font-size: clamp(11px, 1.4vw, 13px);
+    font-weight: 600;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    animation: luxuryFadeIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
+    width: fit-content;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
 }
 
-.badge-line {
-    width: 40px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, $red-elegant);
-    
-    &:last-child {
-        background: linear-gradient(to left, transparent, $red-elegant);
-    }
+.badge-dot {
+    width: 6px;
+    height: 6px;
+    background: $primary-red;
+    border-radius: 50%;
 }
 
-.badge-text {
-    white-space: nowrap;
-}
-
-// ============= REFINED HEADLINE =============
-.headline-luxury {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: clamp(8px, 1.5vh, 15px);
-    animation: luxuryFadeIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both;
-}
-
-.headline-top {
-    font-size: clamp(1.3rem, 2.5vw, 2rem);
-    font-weight: 400;
-    color: $text-muted;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-}
-
-.headline-main {
-    font-size: clamp(3.5rem, 8vw, 8rem);
-    font-weight: 300;
+// ============= MASSIVE TITLE =============
+.hero-title {
+    font-size: clamp(56px, 12vw, 180px);
+    font-weight: 800;
     line-height: 0.95;
-    letter-spacing: -0.02em;
-    color: $white;
-    font-family: 'Georgia', 'Times New Roman', serif;
+    letter-spacing: -0.03em;
+    color: $text-primary;
+    margin: 0;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.4s forwards;
+}
+
+.title-highlight {
+    color: $primary-red;
+    display: block;
     position: relative;
     
     &::after {
         content: '';
         position: absolute;
-        bottom: -8px;
+        bottom: -12px;
         left: 0;
-        width: clamp(80px, 15vw, 150px);
-        height: 2px;
-        background: linear-gradient(to right, $red-elegant, transparent);
-        animation: lineExpand 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+        width: 0;
+        height: 6px;
+        background: $primary-red;
+        animation: lineExpand 1s ease-out 1.2s forwards;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
 @keyframes lineExpand {
     from { width: 0; }
-    to { width: clamp(80px, 15vw, 150px); }
+    to { width: clamp(100px, 20vw, 250px); }
 }
 
-// ============= ELEGANT DESCRIPTION =============
-.description-luxury {
-    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-    line-height: 1.8;
-    color: $text-elegant;
-    font-weight: 300;
-    max-width: 600px;
-    letter-spacing: 0.3px;
-    animation: luxuryFadeIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s both;
+// ============= ACTIONS =============
+.hero-actions {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
 }
 
-// ============= PREMIUM STATS =============
-.stats-elegant {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    gap: clamp(20px, 3vw, 40px);
-    align-items: center;
-    padding: clamp(25px, 3vh, 35px) 0;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    animation: luxuryFadeIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s both;
-}
-
-.stat-elegant {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.stat-value {
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    font-weight: 200;
-    color: $red-elegant;
-    line-height: 1;
-    font-family: 'Georgia', 'Times New Roman', serif;
-}
-
-.stat-unit {
-    font-size: clamp(0.75rem, 1vw, 0.85rem);
-    color: $text-muted;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-}
-
-.stat-divider-elegant {
-    width: 1px;
-    height: 50px;
-    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
-}
-
-// ============= REFINED CTA =============
-.cta-elegant {
-    display: flex;
-    gap: 20px;
-    animation: luxuryFadeIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
-}
-
-.btn-luxury-primary {
+.btn-primary {
     display: inline-flex;
     align-items: center;
-    gap: 20px;
-    padding: clamp(16px, 2.2vh, 20px) clamp(35px, 5vw, 50px);
-    background: $red-elegant;
-    color: $white;
-    border: 1px solid $red-elegant;
-    border-radius: 2px;
-    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-    font-weight: 500;
-    letter-spacing: 0.5px;
+    gap: 16px;
+    padding: clamp(20px, 3vh, 28px) clamp(40px, 6vw, 60px);
+    font-size: clamp(16px, 2vw, 20px);
+    font-weight: 700;
+    border-radius: 100px;
     cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: none;
+    background: $primary-red;
+    color: $text-primary;
     position: relative;
     overflow: hidden;
     
@@ -218,240 +152,204 @@ $text-muted: #b8b8b8;
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-        transform: translateX(-100%);
+        background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transform: translateX(-100%) rotate(45deg);
         transition: transform 0.6s;
     }
     
-    .btn-arrow {
-        display: flex;
-        transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    svg {
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        stroke-width: 2.5;
     }
     
     &:hover {
-        background: $red-light;
-        transform: translateY(-3px);
-        box-shadow: 0 20px 50px rgba(128, 0, 50, 0.4);
+        background: $primary-red-hover;
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 20px 60px rgba(220, 38, 38, 0.4);
         
         &::before {
-            transform: translateX(100%);
+            transform: translateX(100%) rotate(45deg);
         }
         
-        .btn-arrow {
-            transform: translateX(5px);
+        svg {
+            transform: translateX(6px);
+        }
+    }
+    
+    &:active {
+        transform: translateY(-2px) scale(1.01);
+    }
+}
+
+// ============= COMPACT INFO =============
+.hero-info {
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 3vw, 24px);
+    font-size: clamp(14px, 1.8vw, 18px);
+    color: $text-secondary;
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.8s forwards;
+    
+    span:not(.divider) {
+        transition: color 0.3s ease;
+        
+        &:hover {
+            color: $text-primary;
         }
     }
 }
 
-.btn-luxury-secondary {
-    display: inline-flex;
+.divider {
+    opacity: 0.3;
+}
+
+// ============= SCROLL INDICATOR =============
+.scroll-indicator {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: clamp(16px, 2.2vh, 20px) clamp(35px, 5vw, 50px);
-    background: transparent;
-    color: $white;
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 2px;
-    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: all 0.4s ease;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 1.5s forwards;
     
-    &:hover {
-        background: rgba(255,255,255,0.05);
-        border-color: $red-elegant;
-        color: $red-elegant;
-        transform: translateY(-3px);
+    span {
+        font-size: 11px;
+        color: $text-secondary;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
     }
 }
 
-// ============= RIGHT CARDS =============
-.cards-column {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(20px, 3vh, 30px);
-    animation: luxurySlideIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s both;
-}
-
-@keyframes luxurySlideIn {
-    from { opacity: 0; transform: translateX(40px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-
-.luxury-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 4px;
-    padding: clamp(30px, 4vw, 40px);
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+.scroll-line {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(to bottom, $primary-red, transparent);
     position: relative;
-    overflow: hidden;
     
-    &::before {
+    &::after {
         content: '';
         position: absolute;
         top: 0;
-        left: 0;
-        width: 3px;
-        height: 0;
-        background: $red-elegant;
-        transition: height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    
-    &:hover {
-        background: rgba(255, 255, 255, 0.06);
-        border-color: rgba(128, 0, 50, 0.3);
-        transform: translateX(-5px);
-        
-        &::before {
-            height: 100%;
-        }
-        
-        .card-icon {
-            color: $red-elegant;
-            transform: scale(1.05);
-        }
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background: $primary-red;
+        animation: scrollDown 2s ease-in-out infinite;
     }
 }
 
-.card-icon {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $text-muted;
-    margin-bottom: 20px;
-    transition: all 0.4s ease;
-}
-
-.luxury-card h3 {
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
-    font-weight: 400;
-    color: $white;
-    margin: 0 0 12px 0;
-    letter-spacing: 0.5px;
-}
-
-.luxury-card p {
-    font-size: clamp(0.9rem, 1.3vw, 1rem);
-    line-height: 1.6;
-    color: $text-muted;
-    font-weight: 300;
-    margin: 0;
-}
-
-// ============= ELEGANT SCROLL =============
-.scroll-elegant {
-    position: fixed;
-    bottom: clamp(40px, 6vh, 60px);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    z-index: 100;
-    animation: luxuryFadeIn 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.5s both;
-}
-
-.scroll-text {
-    font-size: 0.75rem;
-    color: $text-muted;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-weight: 400;
-}
-
-.scroll-icon {
-    color: $red-elegant;
-    opacity: 0.8;
+@keyframes scrollDown {
+    0% { top: 0; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
 }
 
 // ============= RESPONSIVE =============
 
+// Large Desktop
+@media (min-width: 1920px) {
+    .hero-title {
+        font-size: 200px;
+    }
+}
+
+// Desktop
+@media (max-width: 1400px) {
+    .hero-title {
+        font-size: clamp(48px, 11vw, 140px);
+    }
+}
+
 // Tablet
-@media (max-width: 1200px) {
-    .hero-grid-luxury {
-        grid-template-columns: 1fr;
-        gap: 60px;
+@media (max-width: 1024px) {
+    .hero-content {
+        padding: 0 40px;
     }
     
-    .cards-column {
-        max-width: 600px;
+    .hero-title {
+        font-size: clamp(44px, 10vw, 100px);
+    }
+    
+    .hero-info {
+        flex-wrap: wrap;
     }
 }
 
 // Mobile
 @media (max-width: 768px) {
-    .hero-grid-luxury {
-        padding: 0 30px;
+    .hero-content {
+        padding: 0 24px;
     }
     
-    .headline-main {
-        font-size: clamp(2.5rem, 12vw, 5rem);
+    .hero-inner {
+        gap: 32px;
     }
     
-    .stats-elegant {
-        grid-template-columns: 1fr;
-        gap: 20px;
+    .badge {
+        font-size: 11px;
+        letter-spacing: 2px;
     }
     
-    .stat-divider-elegant {
-        display: none;
+    .hero-title {
+        font-size: clamp(36px, 14vw, 72px);
+        line-height: 1;
     }
     
-    .cta-elegant {
-        flex-direction: column;
-        width: 100%;
-        
-        .btn-luxury-primary,
-        .btn-luxury-secondary {
-            width: 100%;
-            justify-content: center;
+    .title-highlight {
+        &::after {
+            height: 4px;
+            bottom: -8px;
         }
     }
     
-    .luxury-card {
-        padding: 25px;
+    .btn-primary {
+        width: 100%;
+        justify-content: center;
+        padding: 20px 40px;
+        font-size: 16px;
+    }
+    
+    .hero-info {
+        font-size: 14px;
+        gap: 12px;
     }
 }
 
 // Small Mobile
 @media (max-width: 480px) {
-    .hero-grid-luxury {
+    .hero-content {
         padding: 0 20px;
     }
     
-    .luxury-badge {
-        font-size: 0.75rem;
-        gap: 12px;
+    .hero-title {
+        font-size: clamp(32px, 16vw, 56px);
     }
     
-    .badge-line {
-        width: 30px;
+    .btn-primary {
+        padding: 18px 32px;
+        font-size: 15px;
     }
     
-    .headline-top {
-        font-size: 1rem;
-        letter-spacing: 2px;
-    }
-    
-    .headline-main {
-        font-size: clamp(2rem, 15vw, 3.5rem);
-    }
-    
-    .description-luxury {
-        font-size: 1rem;
-    }
-    
-    .stat-value {
-        font-size: 2rem;
+    .hero-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        
+        .divider {
+            display: none;
+        }
     }
 }
 
-// Performance
+// Accessibility
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;

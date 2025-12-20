@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 
-
 @Component({
   selector: 'app-navbar',
   standalone: true,
