@@ -1,288 +1,210 @@
-// ============= COLORS =============
+// ============= COLORS & VARS =============
 $primary-red: #800032;
-$primary-red-hover: #a00040;
-$white: #ffffff;
-$text-dark: #0a0a0a;
-$text-secondary: #525252;
+$primary-red-glow: rgba(128, 0, 50, 0.6);
+$dark-glass: rgba(5, 5, 5, 0.7); // Dunkel & Transparent
+$dark-solid: rgba(5, 5, 5, 0.95); // Fast Schwarz für Scrolled State
+$border-light: rgba(255, 255, 255, 0.1);
+$text-light: #ffffff;
+$text-dim: #a3a3a3;
 
-// ============= NAVBAR BASE =============
+// ============= NAVBAR BASIS =============
 nav {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    height: 100px;
-    width: 100%;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+    // Positionierung
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 20px; // Abstand von oben (schwebt)
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1000;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    // Größe & Form
+    width: calc(100% - 80px);
+    max-width: 1600px;
+    height: 100px; // Großzügig am Anfang
+    border-radius: 12px;
+    
+    // DARK TECH GLASS LOOK
+    background: $dark-glass;
+    backdrop-filter: blur(16px); // Starker Blur des Hintergrunds
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid $border-light;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    
+    // Transition
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); // "Tech" Easing
+
+    // Die untere rote Linie (initial unsichtbar)
+    .nav-border-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, $primary-red, transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
 
     .navbar {
-        max-width: 1600px;
-        margin: 0 auto;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 0 clamp(24px, 4vw, 50px);
+    }
+}
+
+// ============= LOGO (UNANGETASTET) =============
+.logo-container {
+    display: flex;
+    align-items: center;
+    
+    img {
+        // Wir steuern die Größe über Height, damit Aspect Ratio bleibt
+        height: clamp(60px, 8vw, 85px); 
+        width: auto;
+        transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); // Bessere Lesbarkeit
+    }
+}
+
+// ============= LINKS =============
+.nav-links {
+    display: flex;
+    gap: 10px;
+    
+    @media (max-width: 968px) { display: none; }
+
+    a {
+        text-decoration: none;
+        color: $text-dim;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
         position: relative;
-        padding: 0 clamp(24px, 6vw, 100px);
-        
-        // Logo
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            
-            img {
-                height: clamp(80px, 15vw, 140px);
-                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.08));
-            }
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 13px; // Technischer Look = etwas kleiner, mehr Spacing
+
+        &:hover, &.active {
+            color: $text-light;
+            background: rgba(255, 255, 255, 0.05);
         }
-        
-        // Navigation Links
-        .nav-links {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            
-            @media (max-width: 968px) {
-                display: none;
-            }
-            
-            a {
-                text-decoration: none;
-                font-size: clamp(15px, 1.8vw, 18px);
-                color: $text-dark;
-                font-weight: 600;
-                padding: 12px 24px;
-                position: relative;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                letter-spacing: 0.3px;
-                border-radius: 100px;
-                
-                &::before {
-                    content: '';
-                    position: absolute;
-                    inset: 0;
-                    background: rgba(128, 0, 50, 0.06);
-                    opacity: 0;
-                    border-radius: 100px;
-                    transition: opacity 0.3s ease;
-                }
-                
-                &:hover {
-                    color: $primary-red;
-                    
-                    &::before {
-                        opacity: 1;
-                    }
-                }
-            }
-        }
-        
-        // Contact Button - MODERN 2025
-        .contact-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            font-size: clamp(15px, 1.8vw, 18px);
-            color: $white;
-            font-weight: 700;
-            padding: clamp(14px, 2vh, 18px) clamp(28px, 4vw, 40px);
+
+        // Kleiner roter Punkt beim Hover
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            width: 4px;
+            height: 4px;
             background: $primary-red;
-            border-radius: 100px;
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            letter-spacing: 0.3px;
-            box-shadow: 0 4px 20px rgba(128, 0, 50, 0.25);
-            overflow: hidden;
-            z-index: 10;
-            
-            svg {
-                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-                stroke-width: 2.5;
-            }
-            
-            &::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-                transform: translateX(-100%) rotate(45deg);
-                transition: transform 0.6s;
-            }
-            
-            &:hover {
-                background: $primary-red-hover;
-                transform: translateY(-3px) scale(1.02);
-                box-shadow: 0 8px 30px rgba(128, 0, 50, 0.35);
-                
-                &::before {
-                    transform: translateX(100%) rotate(45deg);
-                }
-                
-                svg {
-                    transform: translateX(4px);
-                }
-            }
-            
-            &:active {
-                transform: translateY(-1px) scale(1.01);
-            }
-            
-            @media (max-width: 968px) {
-                padding: 12px 24px;
-                font-size: 15px;
-            }
+            border-radius: 50%;
+            transition: transform 0.3s ease;
         }
-        
-        // Mobile Menu Toggle
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            
-            @media (max-width: 968px) {
-                display: flex;
-            }
-            
-            &:hover {
-                background: rgba(128, 0, 50, 0.08);
-            }
-            
-            span {
-                width: 24px;
-                height: 2.5px;
-                background: $primary-red;
-                border-radius: 2px;
-                transition: all 0.3s ease;
-            }
+
+        &:hover::after {
+            transform: translateX(-50%) scale(1);
         }
     }
 }
 
-// ============= SCROLLED STATE =============
+// ============= CONTACT BUTTON (GLOWING) =============
+.contact-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    background: rgba($primary-red, 0.15); // Sehr subtil rot
+    border: 1px solid rgba($primary-red, 0.5);
+    color: $text-light;
+    padding: 12px 28px;
+    border-radius: 100px; // Pill shape
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background: $primary-red;
+        box-shadow: 0 0 20px $primary-red-glow; // Glühen
+        border-color: $primary-red;
+        transform: translateY(-2px);
+    }
+}
+
+// ============= MENU TOGGLE =============
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    
+    @media (max-width: 968px) { display: flex; }
+    
+    span {
+        width: 24px;
+        height: 2px;
+        background: $text-light;
+        transition: 0.3s;
+    }
+}
+
+// ============= STATE: SCROLLED (Die Verkleinerung) =============
 nav.scrolled {
-    height: 80px;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(30px);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    top: 0; // Klebt oben
+    margin-top: 0;
+    width: 100%; // Volle Breite
+    max-width: 100%;
+    height: 70px; // Kompakter
+    border-radius: 0; // Ecken werden scharf
+    background: $dark-solid; // Hintergrund wird deckender
+    border-bottom: 1px solid $border-light;
+    
+    .nav-border-bottom {
+        opacity: 1; // Rote Linie erscheint unten
+    }
     
     .navbar {
+        // Logo wird etwas kleiner, bleibt aber proportional
         .logo-container img {
-            height: clamp(60px, 12vw, 100px);
+            height: 50px; 
         }
-        
-        .nav-links a {
-            padding: 10px 20px;
-            font-size: clamp(14px, 1.6vw, 17px);
-        }
-        
-        .contact-button {
-            padding: clamp(12px, 1.8vh, 16px) clamp(24px, 3.5vw, 36px);
-            font-size: clamp(14px, 1.6vw, 17px);
-        }
+    }
+    
+    .contact-button {
+        padding: 10px 24px; // Button wird auch kompakter
     }
 }
 
-// ============= HIDDEN STATE (Logo + Contact bleiben) =============
+// ============= STATE: HIDDEN =============
 nav.hidden {
-    background: transparent;
-    box-shadow: none;
-    backdrop-filter: none;
-    
-    .navbar {
-        .logo-container {
-            width: clamp(140px, 20vw, 200px);
-            height: clamp(60px, 10vh, 80px);
-            background: $white;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-            padding: 8px 16px;
-            
-            img {
-                height: 100%;
-                width: auto;
-            }
-        }
-        
-        .nav-links,
-        .menu-toggle {
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        
-        // Contact Button bleibt sichtbar
-        .contact-button {
-            opacity: 1;
-            pointer-events: auto;
-        }
-    }
+    transform: translate(-50%, -100%); // Fährt nach oben raus
 }
 
 // ============= RESPONSIVE =============
-
-@media (max-width: 968px) {
+@media (max-width: 768px) {
     nav {
+        width: calc(100% - 30px);
+        top: 15px;
         height: 80px;
-        
-        &.scrolled {
-            height: 70px;
-        }
-        
-        &.hidden {
-            .navbar .logo-container {
-                width: 120px;
-                height: 60px;
-            }
-        }
-    }
-}
-
-@media (max-width: 480px) {
-    nav {
-        height: 70px;
         
         .navbar {
             padding: 0 20px;
-            
-            .logo-container img {
-                height: 50px;
-            }
         }
         
         &.scrolled {
+            width: 100%;
+            top: 0;
             height: 65px;
             
-            .navbar .logo-container img {
+             .logo-container img {
                 height: 45px;
             }
         }
-        
-        &.hidden {
-            .navbar .logo-container {
-                width: 100px;
-                height: 50px;
-                padding: 6px 12px;
-            }
-        }
-    }
-}
-
-// ============= ACCESSIBILITY =============
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
     }
 }

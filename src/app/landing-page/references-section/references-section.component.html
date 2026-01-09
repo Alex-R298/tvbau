@@ -1,62 +1,73 @@
-<section>
-    <div class="concrete-background">
-        <div class="geometric-pattern"></div>
-        <div class="red-stripes"></div>
-    </div>
-    
-    <div class="references-container">
-        <!-- Left side: Headline & Description -->
-        <div class="references-left">
-            <div class="references-headline-wrapper">
-                <h1 class="references-headline">
-                    <span class="headline-word" style="--delay: 0">Unsere</span>
-                    <span class="headline-word accent" style="--delay: 0.1s">Referenzen</span>
-                </h1>
-            </div>
-            
-            <p class="references-subtitle">
-                Von Einfamilienhäusern bis zu komplexen Gewerbeprojekten – unsere Arbeit spricht für sich. Qualität, Präzision und Leidenschaft in jedem einzelnen Projekt.
-            </p>
+<section class="references-section">
+    <div class="bg-decoration text-decoration">REFERENCES</div>
+    <div class="bg-decoration line-decoration"></div>
 
-            <div class="references-stats">
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="header-group">
+                <span class="badge">Unsere Expertise</span>
+                <h1 class="headline">
+                    Bauprojekte mit <br>
+                    <span class="text-accent">Charakter.</span>
+                </h1>
+                <p class="subtitle">
+                    Von der Vision bis zum Fundament. Wir realisieren komplexe Gewerbeimmobilien und private Wohnträume mit höchster Präzision.
+                </p>
+            </div>
+
+            <div class="stats-row">
                 <div class="stat-item">
-                    <span class="stat-number">500+</span>
-                    <span class="stat-label">Projekte</span>
+                    <span class="stat-number">500<span class="plus">+</span></span>
+                    <span class="stat-label">Erfolgreiche Projekte</span>
                 </div>
+                <div class="divider"></div>
                 <div class="stat-item">
-                    <span class="stat-number">20+</span>
+                    <span class="stat-number">20</span>
                     <span class="stat-label">Jahre Erfahrung</span>
                 </div>
+                <div class="divider"></div>
                 <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Zufriedene Kunden</span>
+                    <span class="stat-number">100<span class="percent">%</span></span>
+                    <span class="stat-label">Termintreue</span>
                 </div>
+            </div>
+
+            <div class="action-area">
+                <button class="cta-button">Alle Referenzen ansehen</button>
             </div>
         </div>
 
-        <!-- Right side: Image Grid -->
-        <div class="references-right">
-            <div class="image-grid">
-                <div class="grid-item" *ngFor="let item of this.items; let i = index" (click)="openModal(i)">
-                    <img [src]="item.image" [alt]="item.title" class="scroll-animate scroll-animate-delay">
-                    <div class="grid-overlay">
-                        <h3>{{ item.title }}</h3>
-                        <p>{{ item.description }}</p>
+        <div class="grid-wrapper">
+            <div class="masonry-grid">
+                <div class="grid-card" *ngFor="let item of items; let i = index" 
+                     [class.offset-card]="i % 2 !== 0"
+                     (click)="openModal(i)">
+                    
+                    <div class="image-container">
+                        <img [src]="item.image" [alt]="item.title">
+                        <div class="hover-overlay">
+                            <div class="overlay-content">
+                                <span class="project-cat">Referenz</span>
+                                <h3>{{ item.title }}</h3>
+                                <div class="arrow-icon">→</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal for enlarged image -->
     <div class="modal" *ngIf="selectedImageIndex !== null" (click)="closeModal()">
-        <button class="modal-nav-btn modal-nav-prev" (click)="prevImage(); $event.stopPropagation()">‹</button>
-        
-        <div class="modal-content" (click)="$event.stopPropagation()">
-            <button class="modal-close" (click)="closeModal()">✕</button>
-            <img [src]="this.items[selectedImageIndex]?.image" [alt]="this.items[selectedImageIndex]?.title">
+        <button class="nav-btn prev" (click)="prevImage(); $event.stopPropagation()">‹</button>
+        <div class="modal-body" (click)="$event.stopPropagation()">
+            <img [src]="items[selectedImageIndex].image" [alt]="items[selectedImageIndex].title">
+            <div class="modal-info">
+                <h3>{{ items[selectedImageIndex].title }}</h3>
+                <p>{{ items[selectedImageIndex].description }}</p>
+            </div>
+            <button class="close-btn" (click)="closeModal()">✕</button>
         </div>
-        
-        <button class="modal-nav-btn modal-nav-next" (click)="nextImage(); $event.stopPropagation()">›</button>
+        <button class="nav-btn next" (click)="nextImage(); $event.stopPropagation()">›</button>
     </div>
 </section>

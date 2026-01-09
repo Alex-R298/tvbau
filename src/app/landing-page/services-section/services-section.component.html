@@ -1,69 +1,34 @@
-<section>
-    <div class="geometric-background">
-        <div class="geometric-pattern"></div>
-    </div>
-    
-    <div class="services-container">
-        <div class="services-header scroll-animate">
-            <div class="section-badge">
-                <span class="badge-line"></span>
-                <span>LEISTUNGEN</span>
-            </div>
-            
-            <h1>
-                <span class="title-main">UNSERE</span>
-                <span class="title-highlight">EXPERTISE</span>
-            </h1>
-            
-            <p>Von der Planung bis zur Fertigstellung – wir bieten umfassende Bauleistungen aus einer Hand. Qualität, Zuverlässigkeit und Präzision sind unsere Standards.</p>
+<section class="services-section">
+    <div class="bg-watermark">SERVICES</div>
+
+    <div class="container">
+        <div class="header-wrapper">
+            <span class="sub-label">Unser Leistungsportfolio</span>
+            <h2 class="headline">Präzision in <span class="highlight">Beton & Stein.</span></h2>
+            <p class="intro-text">
+                Von der Planung bis zur Fertigstellung – wir bieten umfassende Bauleistungen aus einer Hand. 
+                Qualität, Zuverlässigkeit und Termintreue sind unsere Fundamente.
+            </p>
         </div>
-        
-        <div class="services-grid scroll-animate">
-            <div class="service-card">
-                <div class="service-image">
-                    <img src="../../../assets/img/beton.jpg" alt="Betonarbeiten">
-                    <div class="service-overlay"></div>
+
+        <div class="services-grid">
+            <div class="service-item" *ngFor="let service of services; let i = index">
+                
+                <div class="image-wrapper">
+                    <img [src]="service.image" [alt]="service.title">
+                    <div class="hover-indicator">Mehr erfahren</div>
                 </div>
-                <div class="service-content">
-                    <div class="service-icon">🏗️</div>
-                    <h3>Betonarbeiten</h3>
-                    <p>Professionelle Betonarbeiten für Fundamente, Decken und Bodenplatten – präzise und dauerhaft.</p>
-                </div>
-            </div>
-            
-            <div class="service-card scroll-animate-delay">
-                <div class="service-image">
-                    <img src="../../../assets/img/maurer.jpg" alt="Maurerarbeiten">
-                    <div class="service-overlay"></div>
-                </div>
-                <div class="service-content">
-                    <div class="service-icon">🧱</div>
-                    <h3>Maurerarbeiten</h3>
-                    <p>Fachgerechte Maurerarbeiten in höchster Qualität – vom Mauerwerk bis zur Verblendung.</p>
-                </div>
-            </div>
-            
-            <div class="service-card scroll-animate-delay-2">
-                <div class="service-image">
-                    <img src="../../../assets/img/rohr.jpg" alt="Rohrleitungen">
-                    <div class="service-overlay"></div>
-                </div>
-                <div class="service-content">
-                    <div class="service-icon">⚙️</div>
-                    <h3>Rohrleitungen</h3>
-                    <p>Installation und Wartung von Rohrleitungssystemen – sicher und normgerecht.</p>
-                </div>
-            </div>
-            
-            <div class="service-card scroll-animate-delay-3">
-                <div class="service-image">
-                    <img src="../../../assets/img/abriss.jpg" alt="Abrissarbeiten">
-                    <div class="service-overlay"></div>
-                </div>
-                <div class="service-content">
-                    <div class="service-icon">💥</div>
-                    <h3>Abrissarbeiten</h3>
-                    <p>Sichere und effiziente Abrissarbeiten – kontrolliert und umweltgerecht.</p>
+
+                <div class="content-wrapper">
+                    <div class="meta-row">
+                        <span class="index-number">0{{ i + 1 }}</span>
+                        <div class="line-spacer"></div>
+                    </div>
+                    
+                    <h3>{{ service.title }}</h3>
+                    <p class="description">{{ service.description }}</p>
+                    
+                    <div class="action-arrow">→</div>
                 </div>
             </div>
         </div>

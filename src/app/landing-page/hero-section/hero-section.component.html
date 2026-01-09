@@ -1,6 +1,5 @@
 <section class="hero">
     
-    <!-- Video Background -->
     <div class="video-container">
         <video autoplay loop muted playsinline class="hero-video">
             <source src="../../../assets/img/tvbau.mp4" type="video/mp4">
@@ -8,50 +7,59 @@
         <div class="video-overlay"></div>
     </div>
 
-    <!-- Content -->
-    <div class="hero-content">
+    <canvas #blueprintCanvas class="blueprint-canvas"></canvas>
+
+    <div class="hero-grid-container">
         
-        <div class="hero-inner">
+        <div class="content-box">
             
-            <!-- Badge -->
-            <div class="badge">
-                <span class="badge-dot"></span>
-                <span>Meisterbetrieb seit 1999</span>
+            <div class="corner-mark top-left"></div>
+            <div class="corner-mark bottom-right"></div>
+
+            <div class="badge-container">
+                <span class="status-dot"></span>
+                <span class="meta-text">Meisterbetrieb est. 1999</span>
             </div>
 
-            <!-- Massive Headline -->
             <h1 class="hero-title">
-                Handwerk<br>
-                <span class="title-highlight">trifft Präzision</span>
+                <span class="d-block">Präzision</span>
+                <span class="d-block text-outline">am Bau</span>
             </h1>
 
-            <!-- CTA -->
-            <div class="hero-actions">
-                <button class="btn-primary">
-                    Projekt starten
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-                    </svg>
+            <p class="hero-description">
+                Ihr Partner für anspruchsvolle Bauvorhaben in Schwäbisch Gmünd. 
+                Qualität, die bleibt – seit über 25 Jahren.
+            </p>
+
+            <div class="action-wrapper">
+                <button class="btn-tech">
+                    <span class="btn-bg"></span>
+                    <span class="btn-text">Projekt anfragen</span>
+                    <span class="btn-icon">→</span>
                 </button>
+                <div class="tech-specs">
+                    <span>REF: 500+</span>
+                    <span>LOC: GD</span>
+                </div>
             </div>
+        </div>
 
-            <!-- Compact Info -->
-            <div class="hero-info">
-                <span>25+ Jahre</span>
-                <span class="divider">•</span>
-                <span>500+ Projekte</span>
-                <span class="divider">•</span>
-                <span>Schwäbisch Gmünd</span>
+        <div class="visual-space">
+            <div class="vertical-line"></div>
+            <div class="coordinate-display">
+                X: 48.801 | Y: 9.798
             </div>
-
         </div>
 
     </div>
 
-    <!-- Scroll Indicator -->
-    <div class="scroll-indicator">
-        <span>Scroll</span>
-        <div class="scroll-line"></div>
+    <div class="bottom-bar">
+        <div class="scroll-trigger">
+            <span class="scroll-text">Scroll Down</span>
+            <div class="scroll-track">
+                <div class="scroll-bullet"></div>
+            </div>
+        </div>
     </div>
 
 </section>

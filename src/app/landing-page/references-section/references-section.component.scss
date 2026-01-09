@@ -1,455 +1,363 @@
-section {
+// Variables
+$primary: #1a1a1a;
+$accent: #c41e3a; // Construction Red
+$bg-color: #f4f4f4; // Concrete look
+$text-muted: #666;
+
+section.references-section {
     position: relative;
-    padding: 6rem 2rem;
+    background-color: $bg-color;
+    color: $primary;
     min-height: 100vh;
+    padding: 8rem 2rem;
+    overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background-color: #e8e8e8;
-    
-    @media (max-width: 768px) {
+
+    @media (max-width: 992px) {
         padding: 4rem 1.5rem;
     }
 }
 
-// Background
-.concrete-background {
+// Background Decorations (Architectural feeling)
+.bg-decoration {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     z-index: 0;
-}
+    pointer-events: none;
+    
+    &.text-decoration {
+        top: 5%;
+        left: -2%;
+        font-size: 15rem;
+        font-weight: 900;
+        color: rgba(0,0,0,0.03);
+        line-height: 1;
+        text-transform: uppercase;
+        font-family: sans-serif;
+    }
 
-.geometric-pattern {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background-color: #e8e8e8;
-    
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 280px,
-            rgba(128, 0, 50, 0.12) 280px,
-            rgba(128, 0, 50, 0.12) 281px
-        ),
-        repeating-linear-gradient(
-            -45deg,
-            transparent,
-            transparent 280px,
-            rgba(128, 0, 50, 0.12) 280px,
-            rgba(128, 0, 50, 0.12) 281px
-        );
-    
-    background-size: 100% 100%;
-    background-position: 0 0;
-    background-repeat: repeat;
-    
-    &::before {
-        content: '';
-        position: absolute;
+    &.line-decoration {
         top: 0;
-        left: 0;
-        width: 100%;
+        left: 35%;
+        width: 1px;
         height: 100%;
-        background: radial-gradient(
-            circle at 70% 40%, 
-            rgba(128, 0, 50, 0.08) 0%, 
-            transparent 50%
-        ),
-        radial-gradient(
-            circle at 30% 80%, 
-            rgba(128, 0, 50, 0.08) 0%, 
-            transparent 50%
-        ),
-        radial-gradient(
-            circle at 50% 50%, 
-            rgba(128, 0, 50, 0.05) 0%, 
-            transparent 60%
-        );
-        animation: pulse 6s ease-in-out infinite;
-    }
-    
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: 
-            repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.015) 2px, rgba(0,0,0,0.015) 4px),
-            repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.015) 2px, rgba(0,0,0,0.015) 4px);
-        opacity: 0.5;
+        background: rgba(0,0,0,0.05);
     }
 }
 
-.red-stripes {
-    display: none;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.4;
-        transform: scale(1.05);
-    }
-}
-
-// Container
-.references-container {
+.container {
     position: relative;
     z-index: 2;
-    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 60px;
+    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.8fr 1.2fr; // More space for images
     gap: 80px;
     align-items: center;
-    animation: fade-in 0.8s ease-out;
-    
+
     @media (max-width: 1024px) {
         grid-template-columns: 1fr;
         gap: 60px;
-        padding: 0 40px;
-    }
-    
-    @media (max-width: 768px) {
-        padding: 0 24px;
-        gap: 40px;
     }
 }
 
-// Left side
-.references-left {
+// Left Content Styling
+.content-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    justify-content: center;
 }
 
-.references-headline-wrapper {
-    overflow: hidden;
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba($accent, 0.1);
+    color: $accent;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+    border-radius: 4px;
 }
 
-.references-headline {
-    margin: 0;
-    padding: 0;
-    line-height: 1.15;
-    letter-spacing: -3px;
-    font-size: clamp(3rem, 10vw, 7rem);
-    font-weight: 900;
-    color: #2a2a2a;
-}
+.headline {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 32px 0;
+    letter-spacing: -1px;
 
-.headline-word {
-    display: block;
-    overflow: hidden;
-    animation: slide-up-word 0.9s cubic-bezier(0.23, 1, 0.320, 1);
-    animation-delay: calc(var(--delay, 0) * 1s);
-    animation-fill-mode: both;
-
-    &.accent {
-        color: #800032;
-        font-weight: 950;
+    .text-accent {
+        color: $accent;
+        position: relative;
+        
+        // Underline effect
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba($accent, 0.2);
+            z-index: -1;
+        }
     }
 }
 
-@keyframes slide-up-word {
-    from {
-        opacity: 0;
-        transform: translateY(60px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fade-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.references-subtitle {
-    font-size: 1.3rem;
-    color: #555;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    margin: 0;
+.subtitle {
+    font-size: 1.1rem;
     line-height: 1.6;
-    animation: fade-in 1s ease-out 0.3s both;
-    max-width: 500px;
+    color: $text-muted;
+    max-width: 450px;
+    margin-bottom: 48px;
+    border-left: 3px solid $accent;
+    padding-left: 20px;
 }
 
-// Stats Grid
-.references-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+// --- NEW MODERN STATS ---
+.stats-row {
+    display: flex;
+    align-items: center;
     gap: 30px;
-    animation: fade-in 1s ease-out 0.4s both;
+    margin-bottom: 48px;
+
+    @media (max-width: 480px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}
+
+.divider {
+    width: 1px;
+    height: 50px;
+    background: #ddd;
     
-    @media (max-width: 768px) {
-        grid-template-columns: 1fr;
+    @media (max-width: 480px) {
+        display: none;
     }
 }
 
 .stat-item {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(128, 0, 50, 0.2);
-    border-radius: 12px;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
 
-    &:hover {
-        border-color: #c41e3a;
-        background: rgba(255, 255, 255, 1);
-        box-shadow: 0 10px 30px rgba(128, 0, 50, 0.15);
-        transform: translateY(-4px);
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        color: $primary;
+        line-height: 1;
+        font-feature-settings: "tnum"; // Tabular numbers
+        font-variant-numeric: tabular-nums;
+        
+        .plus, .percent {
+            font-size: 1.5rem;
+            color: $accent;
+            vertical-align: super;
+            margin-left: 4px;
+        }
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: $text-muted;
+        margin-top: 8px;
+        font-weight: 600;
     }
 }
 
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: #c41e3a;
-}
-
-.stat-label {
-    font-size: 0.9rem;
-    color: #555;
+.cta-button {
+    background: $primary;
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    font-size: 1rem;
     font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background: $accent;
+        transform: translateY(-2px);
+    }
 }
 
-// Right side
-.references-right {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+// --- STAGGERED GRID ---
+.grid-wrapper {
+    position: relative;
 }
 
-.image-grid {
+.masonry-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    width: 100%;
-    animation: fade-in 1s ease-out 0.5s both;
-    
-    @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-}
-
-.grid-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 16px;
-    aspect-ratio: 4 / 3;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    
-    &:hover {
-        transform: translateY(-4px);
-    }
-    
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-    }
-    
-    &:hover img {
-        transform: scale(1.08);
-    }
-    
-    .grid-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-            to top,
-            rgba(128, 0, 50, 0.3) 0%,
-            rgba(128, 0, 50, 0.1) 50%,
-            transparent 100%
-        );
-        backdrop-filter: blur(4px);
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding: 24px;
-        opacity: 0;
-        transition: opacity 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-        
-        h3 {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: white;
-            margin: 0 0 8px 0;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-        }
-        
-        p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin: 0;
-            line-height: 1.5;
-            font-weight: 300;
-        }
-    }
-    
-    &:hover .grid-overlay {
-        opacity: 1;
-    }
-}
-
-// Modal
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    backdrop-filter: blur(10px);
-    animation: modalFadeIn 0.3s ease-out;
-    padding: 40px 80px;
     gap: 30px;
     
     @media (max-width: 768px) {
-        padding: 20px 60px;
-        gap: 20px;
+        grid-template-columns: 1fr;
     }
 }
 
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.modal-content {
+.grid-card {
     position: relative;
-    max-width: 90%;
-    max-height: 90vh;
-    background: transparent;
-    border-radius: 0;
+    cursor: pointer;
+    border-radius: 0; // Modern sharp edges
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    animation: modalSlideUp 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    aspect-ratio: 4/5;
     
-    @media (max-width: 768px) {
-        max-width: 100%;
+    // The staggered effect
+    &.offset-card {
+        transform: translateY(60px); // Push every second card down
+        @media (max-width: 768px) {
+            transform: none;
+        }
+    }
+
+    .image-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+            filter: grayscale(20%); // Slight architectural look
+        }
+
+        .hover-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transition: all 0.4s ease;
+
+            .overlay-content {
+                transform: translateY(20px);
+                transition: transform 0.4s ease;
+                color: white;
+                width: 100%;
+
+                .project-cat {
+                    font-size: 0.75rem;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    opacity: 0.8;
+                    display: block;
+                    margin-bottom: 8px;
+                }
+
+                h3 {
+                    font-size: 1.5rem;
+                    margin: 0;
+                    font-weight: 700;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .arrow-icon {
+                    width: 30px;
+                    height: 30px;
+                    border: 1px solid rgba(255,255,255,0.3);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+        .hover-overlay {
+            opacity: 1;
+            .overlay-content {
+                transform: translateY(0);
+            }
+        }
     }
 }
 
-@keyframes modalSlideUp {
-    from {
-        transform: translateY(40px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.modal-close {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: none;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1.8rem;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
-    z-index: 10;
-    padding: 0;
-    font-weight: 300;
-    line-height: 1;
+// Modal Styling (Simplified & Modernized)
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.95);
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    &:hover {
-        color: rgba(255, 255, 255, 1);
-        transform: rotate(90deg);
+    animation: fadeIn 0.3s ease;
+
+    .modal-body {
+        position: relative;
+        max-width: 90vw;
+        max-height: 85vh;
+        display: flex;
+        flex-direction: column;
+        
+        img {
+            max-height: 70vh;
+            max-width: 100%;
+            object-fit: contain;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .modal-info {
+            color: white;
+            margin-top: 20px;
+            
+            h3 { margin: 0 0 10px 0; font-size: 1.5rem; }
+            p { color: #aaa; margin: 0; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    }
+
+    .nav-btn {
+        background: none;
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+        font-size: 2rem;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        cursor: pointer;
+        margin: 0 20px;
+        transition: all 0.3s;
+
+        &:hover {
+            background: white;
+            color: black;
+        }
     }
 }
 
-.modal-content img {
-    width: 100%;
-    height: auto;
-    max-height: 60vh;
-    object-fit: contain;
-    
-    @media (max-width: 768px) {
-        max-height: 50vh;
-    }
-}
-
-.modal-nav-btn {
-    width: 70px;
-    height: 70px;
-    background: transparent;
-    border: none;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 2.8rem;
-    cursor: pointer;
-    border-radius: 0;
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 300;
-    padding: 0;
-    line-height: 1;
-    flex-shrink: 0;
-    
-    &:hover {
-        color: rgba(255, 255, 255, 1);
-        transform: scale(1.3);
-    }
-    
-    &.modal-nav-prev {
-        order: -1;
-    }
-    
-    &.modal-nav-next {
-        order: 1;
-    }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }

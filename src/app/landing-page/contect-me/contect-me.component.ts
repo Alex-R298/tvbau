@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-interface UploadedImage {
+interface UploadedFile {
   id: string;
   file: File;
   preview: string;
@@ -15,54 +15,56 @@ interface UploadedImage {
   templateUrl: './contect-me.component.html',
   styleUrl: './contect-me.component.scss'
 })
-export class ContectMeComponent implements OnInit {
-     // Form data
+export class ContectMeComponent {
+  
   formData = {
     vorname: '',
     name: '',
     email: '',
     telefon: '',
-    leistung: '',
+    leistung: '', // String instead of object
     nachricht: ''
   };
 
+  // Simplified for Tile Selection
   leistungen = [
-    'Maurer Arbeiten',
-    'Beton Arbeiten',
-    'Abriss',
-    'Verputzen',
-    'Sanieren',
-    'Sonstiges'
+    'Neubau',
+    'Sanierung',
+    'Betonarbeiten',
+    'Tiefbau',
+    'Gewerbebau',
+    'Beratung'
   ];
 
-  uploadedImages: UploadedImage[] = [];
+  uploadedImages: UploadedFile[] = [];
   isDragging = false;
 
+  selectLeistung(option: string) {
+    this.formData.leistung = option;
+  }
+
+  // File Handling Logic
   onFileSelect(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files) {
       this.handleFiles(input.files);
-      input.value = '';
+      input.value = ''; // Reset
     }
   }
 
   onDragOver(event: DragEvent): void {
     event.preventDefault();
-    event.stopPropagation();
     this.isDragging = true;
   }
 
   onDragLeave(event: DragEvent): void {
     event.preventDefault();
-    event.stopPropagation();
     this.isDragging = false;
   }
 
   onDrop(event: DragEvent): void {
     event.preventDefault();
-    event.stopPropagation();
     this.isDragging = false;
-
     if (event.dataTransfer?.files) {
       this.handleFiles(event.dataTransfer.files);
     }
@@ -70,17 +72,10 @@ export class ContectMeComponent implements OnInit {
 
   private handleFiles(files: FileList): void {
     Array.from(files).forEach(file => {
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          this.uploadedImages.push({
-            id: this.generateId(),
-            file: file,
-            preview: e.target?.result as string
-          });
-        };
-        reader.readAsDataURL(file);
-      }
+      // Simple ID generation
+      const id = Date.now().toString(36) + Math.random().toString(36).substr(2);
+      const preview = URL.createObjectURL(file);
+      this.uploadedImages.push({ id, file, preview });
     });
   }
 
@@ -88,17 +83,8 @@ export class ContectMeComponent implements OnInit {
     this.uploadedImages = this.uploadedImages.filter(img => img.id !== id);
   }
 
-  onSubmit(): void {
-    console.log('Form Data:', this.formData);
-    console.log('Uploaded Images:', this.uploadedImages);
-    // Hier kannst du deine Validierung und Submit-Logik hinzufügen
-  }
-
-  private generateId(): string {
-    return Math.random().toString(36).substring(2) + Date.now().toString(36);
-  }
-
-  ngOnInit() {
-    // Form initialization logic can go here if needed
+  onSubmit() {
+    console.log('Sende Daten...', this.formData, this.uploadedImages);
+    // Hier Service Anbindung
   }
 }

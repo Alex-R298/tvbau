@@ -9,30 +9,31 @@ import { CommonModule } from '@angular/common';
   styleUrl: './references-section.component.scss'
 })
 export class ReferencesSectionComponent {
-  name = 'ReferencesSectionComponent';
+  // Füge hier am besten 4 Items hinzu, damit das Raster gut aussieht
   items: any[] = [
     {
-      title: 'Maurerarbeiten',
-      description: 'Professionelle Maurerarbeiten für Neubauten und Sanierungen.',
-      image: '../../../assets/img/work1.jpg',
+      title: 'Gewerbepark West',
+      description: 'Kompletter Rohbau und Betonkernaktivierung für 5000m² Bürofläche.',
+      image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop', // Beispielbild Bau
     },
     {
-      title: 'Betonarbeiten',
-      description: 'Hochwertige Beton- und Fundamentarbeiten.',
-      image: '../../../assets/img/work2.jpg',
+      title: 'Villa Riverside',
+      description: 'Exklusiver Neubau mit Sichtbeton-Elementen.',
+      image: 'https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=1000&auto=format&fit=crop',
     },
     {
-      title: 'Abrissarbeiten',
-      description: 'Sichere und effiziente Abriss- und Rückbauarbeiten.',
-      image: '../../../assets/img/abriss.jpg',
+      title: 'Brückensanierung A4',
+      description: 'Spezialabbruch und Instandsetzung der tragenden Teile.',
+      image: 'https://images.unsplash.com/photo-1590644365607-1c5a2e9a5a75?q=80&w=1000&auto=format&fit=crop',
     },
+    {
+        title: 'Stadtquartier Mitte',
+        description: 'Maurerarbeiten für 40 Wohneinheiten.',
+        image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop',
+    }
   ];
-  currentSlideIndex: number = 1;
+  
   selectedImageIndex: number | null = null;
-
-  constructor() {}
-
-  ngOnInit() {}
 
   openModal(index: number) {
     this.selectedImageIndex = index;
@@ -54,13 +55,5 @@ export class ReferencesSectionComponent {
     if (this.selectedImageIndex !== null) {
       this.selectedImageIndex = (this.selectedImageIndex - 1 + this.items.length) % this.items.length;
     }
-  }
-
-  nextSlide() {
-    this.currentSlideIndex = (this.currentSlideIndex + 1) % this.items.length;
-  }
-
-  prevSlide() {
-    this.currentSlideIndex = (this.currentSlideIndex - 1 + this.items.length) % this.items.length;
   }
 }
