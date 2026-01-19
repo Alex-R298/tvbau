@@ -1,10 +1,10 @@
 // Variables
-$dark: #0a0a0a; // Almost Black
-$surface: #141414; // Slightly lighter for form
+$dark: #1a1a2e; // Dunkles Blau-Grau - weniger hart
+$surface: #252540; // Wärmerer Surface-Ton
 $text: #ffffff;
-$text-muted: #888888;
-$accent: #c41e3a; // Construction Red
-$border: rgba(255, 255, 255, 0.1);
+$text-muted: #a0a0b0; // Hellerer muted Text
+$accent: #e63950; // Etwas helleres Rot
+$border: rgba(255, 255, 255, 0.15);
 
 section.contact-section {
     position: relative;
@@ -28,7 +28,7 @@ section.contact-section {
     height: 100%;
     perspective: 1000px;
     z-index: 0;
-    opacity: 0.15;
+    opacity: 0.2;
     pointer-events: none;
     overflow: hidden;
 
@@ -165,7 +165,7 @@ section.contact-section {
 
             .tile {
                 padding: 12px 24px;
-                background: rgba(255,255,255,0.05);
+                background: rgba(255,255,255,0.08);
                 border: 1px solid $border;
                 cursor: pointer;
                 transition: all 0.3s;
@@ -176,7 +176,7 @@ section.contact-section {
                 color: white;
 
                 &:hover {
-                    background: rgba(255,255,255,0.1);
+                    background: rgba(255,255,255,0.15);
                 }
 
                 &.active {
@@ -196,15 +196,15 @@ section.contact-section {
     // Technical Upload - FIXED ICON SIZE
     .upload-area {
         border: 1px dashed $border;
-        background: rgba(255,255,255,0.02);
+        background: rgba(255,255,255,0.05);
         padding: 40px;
         text-align: center;
         cursor: pointer;
         transition: all 0.3s;
-        
+
         &:hover, &.dragging {
             border-color: $accent;
-            background: rgba($accent, 0.05);
+            background: rgba($accent, 0.1);
         }
 
         .upload-content {
@@ -384,7 +384,7 @@ section.contact-section {
 .location-visual {
     margin-top: 60px;
     height: 200px;
-    background: rgba(255,255,255,0.03);
+    background: rgba(255,255,255,0.06);
     border: 1px solid $border;
     position: relative;
     overflow: hidden;
